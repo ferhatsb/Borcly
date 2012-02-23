@@ -28,3 +28,5 @@ end
 gem 'jquery-rails'
 
 gem "heroku"
+
+gem "twitter-bootstrap-rails", "~> 2.0.1.0"
