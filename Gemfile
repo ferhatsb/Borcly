@@ -30,3 +30,8 @@ gem 'jquery-rails'
 gem "heroku"
 
 gem "twitter-bootstrap-rails", "~> 2.0.1.0"
+
+gem "devise"
+gem "omniauth", ">= 1.0.2"
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'

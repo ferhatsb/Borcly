@@ -1,2 +1,5 @@
 Welcome to Borcly!
 This is a fun application designed and developed for http://www.railsarena.com
+
+Used Twitter Bootstrap 2.0 for UI.
+Social Icons from https://github.com/intridea/authbuttons
