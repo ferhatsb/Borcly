@@ -40,7 +40,7 @@
 
         <% if user_signed_in? %>
             <ul class="nav">
-              <li <% if current_page?(:controller => 'dashboard') %>class="active" <% end %> ><%= link_to 'Yonetim Ekrani', admin_root_path %></li>
+              <li <% if current_page?(:controller => 'admin/dashboard') %>class="active" <% end %> ><%= link_to 'Yonetim Ekrani', admin_root_path %></li>
             </ul>
         <% end %>
 
