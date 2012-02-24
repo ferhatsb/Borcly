@@ -1,0 +1,30 @@
+<div class="modal">
+  <div class="modal-header">
+    <h3>Giris</h3>
+  </div>
+  <div class="modal-body">
+
+    <% [:notice, :error, :alert].each do |level| %>
+        <% unless flash[level].blank? %>
+            <div data-alert="alert" class="alert alert-<%= flash_class(level) %> fade in">
+              <a class="close" data-dismiss="alert" href="#">&times;</a>
+              <%= content_tag :p, flash[level] %>
+            </div>
+        <% end %>
+    <% end %>
+
+    <p>Borcly'ye facebook ya da twitter hesabinizla girebilirsiniz.</p>
+
+    <p>
+      <%- if devise_mapping.omniauthable? %>
+          <%= link_to image_tag('facebook_64.png'), user_omniauth_authorize_path(:facebook) %>
+          <%= link_to image_tag('twitter_64.png'), user_omniauth_authorize_path(:twitter), %>
+      <% end -%>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <a href="/" class="btn">Iptal</a>
+  </div>
+</div>
+
+

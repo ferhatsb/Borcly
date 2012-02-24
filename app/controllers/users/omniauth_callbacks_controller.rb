@@ -1,7 +1,6 @@
 class Users::OmniauthCallbacksController < ApplicationController
 
   def facebook
-    # You need to implement the method below in your model
     @user = User.find_for_facebook_oauth(request.env["omniauth.auth"], current_user)
 
     if @user.persisted?
@@ -27,13 +26,11 @@ class Users::OmniauthCallbacksController < ApplicationController
   end
 
 
-
   def passthru
     render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
     # Or alternatively,
     # raise ActionController::RoutingError.new('Not Found')
   end
-
 
   def failure
     render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false

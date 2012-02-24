@@ -225,7 +225,7 @@ Devise.setup do |config|
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
 
-  config.omniauth :twitter, '	501211646-gQL0HvfI6YFZwu3DqFBk4mN8GqnUthBT2KJfC3cR', 'pC7QR6vEZnauq5iDa7evAxcGzZKycYFD97vQCqvQKU'
+  config.omniauth :twitter, 'TJkDhHYHqhtuDosZZ4oLQ', 'qJW7R5kXm8yY6Z0qzvmclOeIhqPTTAgcKGAPVCly0I'
   config.omniauth :facebook, '141662065955062', '5a5d8104efa066f9a96b4e4678ed3aa0'
 
 end
