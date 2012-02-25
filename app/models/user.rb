@@ -2,7 +2,11 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable,:omniauthable
 
-  attr_accessible:email,:password,:password_confirmation,:remember_me
+
+  has_many :transactions
+
+
+  attr_accessible:email, :password
 
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)

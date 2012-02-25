@@ -6,6 +6,7 @@ Borcly::Application.routes.draw do
   end
 
   namespace :admin do
+    resources :transactions
     root :to =>  'dashboard#index'
   end
 
