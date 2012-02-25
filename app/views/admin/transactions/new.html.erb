@@ -1,44 +1,35 @@
-<%= form_for([:admin, @transaction], :html => {:class => "form-horizontal"}, :remote => true) do |f| %>
+<%= form_for([:admin, @transaction], :html => {:class => "form-horizontal ajax-form"}, :remote => true) do |f| %>
     <fieldset>
-
       <div class="control-group">
-        <label for="type" class="control-label">Kayit Tipi:</label>
-
-        <div class="controls">
-          <%= f.select(:transaction_type, Transaction::TYPES.collect{|key,value| [value,key]}) %>
-        </div>
-      </div>
-
-      <div class="control-group">
-        <label for="related_person_name" class="control-label">Ilgili Kisi Adi:</label>
+        <label for="related_person_name" class="control-label">Borc Verilen Adi:</label>
         <div class="controls">
           <%= f.text_field :related_person_name, :class => 'input-xlarge' %>
         </div>
       </div>
 
       <div class="control-group">
-        <label for="related_person_email" class="control-label">Ilgili Kisi E-Posta:</label>
+        <label for="related_person_email" class="control-label">Borc Verilen Kisi E-Posta:</label>
         <div class="controls">
           <%= f.text_field :related_person_email, :class => 'input-xlarge' %>
         </div>
       </div>
 
       <div class="control-group">
-        <label for="amount" class="control-label">Para Miktari:</label>
+        <label for="amount" class="control-label">Borc Miktari:</label>
         <div class="controls">
           <%= f.number_field :amount, :class => 'input-xlarge' %>
         </div>
       </div>
 
       <div class="control-group">
-        <label for="start_date" class="control-label">Borc Alma/Verme Tarihi:</label>
+        <label for="start_date" class="control-label">Borc Verme Tarihi:</label>
         <div class="controls">
           <%= f.date_select :start_date, :class => 'input-xlarge' %>
         </div>
       </div>
 
       <div class="control-group">
-        <label for="end_date" class="control-label">Vade Tarihi:</label>
+        <label for="end_date" class="control-label">Borc Vade Son Tarihi:</label>
         <div class="controls">
           <%= f.date_select :end_date, :class => 'input-xlarge' %>
         </div>

@@ -12,5 +12,20 @@ $(function(){
         modalElement.find('.modal-body').load($(this).attr('data-href') , function(){
             modalElement.modal({show: true , backdrop : true , keyboard: true});
         });
+
+        modalElement.on('shown', function () {
+            ajax_form();
+        });
     });
 });
+
+
+function ajax_form() {
+    $('.ajax-form').each(function(index) {
+        $(this).submit(function() {
+            $(this).text();
+            return true;
+        });
+    });
+}
+

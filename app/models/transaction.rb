@@ -1,20 +1,20 @@
 class Transaction < ActiveRecord::Base
 
-  TYPES = {'credit' => 'Alacak', 'debit' => 'Borc'}
+  STATUS = {:paid => 'Odendi', :not_paid => 'Odenmedi', :overdued => 'Vadesi Gecmis'}
 
   belongs_to :user
 
-  attr_accessible:transaction_type, :related_person_name, :amount, :end_date, :start_date, :related_person_email
+  attr_accessible :status, :related_person_name, :amount, :end_date, :start_date, :related_person_email
 
-  scope :debits, lambda {
-    where("transactions.type = ?", 'debit')
+  scope :paid, lambda {
+    where("transactions.status = ?", 'paid')
   }
 
-  scope :credits, lambda {
-    where("transactions.type = ?", 'credit')
+  scope :not_paid_overdue, lambda {
+    param = %w(not_paid overdued)
+    where("transactions.status in (?)", param )
   }
 
-  validates :transaction_type, :presence => true
   validates :related_person_name, :presence => true
   validates :amount, :presence => true, :numericality  => true
   validates :start_date, :presence => true

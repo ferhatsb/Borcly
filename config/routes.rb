@@ -6,8 +6,10 @@ Borcly::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :transactions
-    root :to =>  'dashboard#index'
+    resources :transactions do
+      get 'paid', :on => :collection
+    end
+    root :to =>  'transactions#index'
   end
 
   root :to => 'home#index'

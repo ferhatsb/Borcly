@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20120224200155) do
   create_table "transactions", :force => true do |t|
     t.string   "related_person_name"
     t.string   "related_person_email"
-    t.string   "transaction_type"
+    t.string   "status"
     t.float    "amount"
     t.date     "end_date"
     t.date     "start_date"

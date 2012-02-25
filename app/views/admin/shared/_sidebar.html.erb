@@ -1,0 +1,16 @@
+<div class="page-header">
+  <h1>Yonetim</h1>
+</div>
+<p>
+  <a class="btn-modal btn btn-primary" title="Yeni Kayit Ekle" href="#transaction-modal" data-href="<%= new_admin_transaction_path %>" data-toggle="modal">Yeni
+    Kayit Ekle</a>
+  <br/>
+</p>
+
+<div style="padding: 8px 0;" class="well">
+  <ul class="nav nav-list">
+    <%= link_to 'Alacaklarim', admin_root_path %>
+    <%= link_to 'Odenmis Borclar', paid_admin_transactions_path %>
+    <li><a href="#"><i class="icon-pencil"></i> Ayarlar</a></li>
+  </ul>
+</div>

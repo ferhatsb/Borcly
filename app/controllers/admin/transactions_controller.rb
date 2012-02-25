@@ -1,5 +1,13 @@
 class Admin::TransactionsController < Admin::BaseController
 
+  def index
+    @transactions = Transaction.not_paid_overdue
+  end
+
+  def paid
+    @transactions = Transaction.paid
+  end
+
   def new
     @transaction = Transaction.new
     respond_to do |format|
@@ -17,13 +25,19 @@ class Admin::TransactionsController < Admin::BaseController
   def create
     @transaction = Transaction.new(params[:transaction])
     @transaction.user = current_user
+    @transaction.status = :not_paid.to_s
 
     respond_to do |format|
       if @transaction.save
-        #format.html { redirect_to @transaction, notice: 'Yeni kayit olusturuldu' }
+        format.html { redirect_to request.referer, notice: 'Yeni Borc Kaydi olusturuldu' }
         format.json { render json: @transaction, status: :created }
       else
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+        format.js {
+          render :template => "admin/shared/form_errors",
+                 :locals => {
+                     :item => @transaction,
+                     :notice => 'Kayit Eklemede Hatalar Olustu'
+                 } }
       end
     end
   end
@@ -33,7 +47,7 @@ class Admin::TransactionsController < Admin::BaseController
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to @transaction, notice: 'Kayit guncellendi olusturuldu' }
+        format.html { redirect_to request.referer, notice: 'Borc Kaydi guncellendi' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -42,14 +56,12 @@ class Admin::TransactionsController < Admin::BaseController
     end
   end
 
-  # DELETE /bubuos/1
-  # DELETE /bubuos/1.json
   def destroy
     @transaction = Transaction.find(params[:id])
     @transaction.destroy
 
     respond_to do |format|
-      #format.html { redirect_to bubuos_url }
+      format.html { redirect_to request.referer }
       format.json { head :no_content }
     end
   end

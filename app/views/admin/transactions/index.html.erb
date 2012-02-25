@@ -5,7 +5,9 @@
 <% end %>
 
 <div class="row">
-  <%= render 'sidebar' %>
+  <div class="span2">
+    <%= render 'admin/shared/sidebar' %>
+  </div>
   <div class="span9">
 
     <div class="page-header">
@@ -37,7 +39,6 @@
       <tbody>
 
       <% @transactions.each do |transaction| %>
-
           <tr>
             <td><input type="checkbox"/></td>
             <td><%= transaction.related_person_name %></td>
@@ -47,7 +48,7 @@
             <td><%= transaction.end_date %></td>
             <td>
               <div class="btn-group">
-                <a class="btn-modal btn" href="#transaction-modal" title="Duzenle "  data-href="<%= edit_admin_transaction_path(:id => transaction.id) %>" data-toggle="modal"><i class="icon-cog"></i></a>
+                <a class="btn-modal btn" href="#transaction-modal" title="Duzenle " data-href="<%= edit_admin_transaction_path(:id => transaction.id) %>" data-toggle="modal"><i class="icon-cog"></i></a>
 
                 <%= link_to raw('<i class="icon-trash icon-white"></i>'), admin_transaction_path(:id => transaction.id),
                             :method => :delete, :confirm => 'Emin misiniz?', :class => "btn btn-danger" %>
