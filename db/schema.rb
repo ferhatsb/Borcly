@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120224200155) do
+ActiveRecord::Schema.define(:version => 20120225160828) do
+
+  create_table "channels", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "oauth_token"
+    t.string   "oauth_token_secret"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "transactions", :force => true do |t|
     t.string   "related_person_name"
@@ -26,13 +36,11 @@ ActiveRecord::Schema.define(:version => 20120224200155) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                :default => "", :null => false
-    t.string   "encrypted_password",   :default => "", :null => false
-    t.string   "authentication_token"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.string   "email",      :default => ""
+    t.string   "user_name",  :default => ""
+    t.boolean  "first_time", :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
-
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end
