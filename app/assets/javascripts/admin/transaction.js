@@ -1,5 +1,5 @@
 $(function(){
-    var modalElement = $('<div />', { class: 'modal hide fade', id: 'transacton-modal' })
+    var modalElement = $('<div />', { class: 'modal fade', id: 'transacton-modal' })
         .append($('<div />', { class: 'modal-header' })
         .append($('<a/>', { class: 'close', text: 'x', 'data-dismiss': 'modal' } ))
         .append($('<h3/>', { text: 'Yeni Kayit Olustur' })))
@@ -7,12 +7,10 @@ $(function(){
 
     $('.btn-modal').click(function(e) {
         e.preventDefault();
-        var btn_data = $(this);
-        modalElement.on('show', function () {
-            $.get(btn_data.attr('data-href'), function(data) {
-                modalElement.find('.modal-body').html(data);
-            });
+        modalElement.find('h3').html($(this).attr('title'));
+
+        modalElement.find('.modal-body').load($(this).attr('data-href') , function(){
+            modalElement.modal({show: true , backdrop : true , keyboard: true});
         });
-        modalElement.modal({show: true , backdrop : true , keyboard: true});
     });
 });

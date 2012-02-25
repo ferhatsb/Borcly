@@ -4,12 +4,14 @@ class Admin::TransactionsController < Admin::BaseController
     @transaction = Transaction.new
     respond_to do |format|
       format.html { render :layout => false }
-      format.xml { render :xml => @transaction }
     end
   end
 
   def edit
     @transaction = Transaction.find(params[:id])
+    respond_to do |format|
+      format.html { render :layout => false }
+    end
   end
 
   def create

@@ -47,7 +47,7 @@
             <td><%= transaction.end_date %></td>
             <td>
               <div class="btn-group">
-                <a class="btn-modal btn" href="#transaction-modal"  data-href="<%= edit_admin_transaction_path(:id => transaction.id) %>" data-toggle="modal"><i class="icon-cog"></i></a>
+                <a class="btn-modal btn" href="#transaction-modal" title="Duzenle "  data-href="<%= edit_admin_transaction_path(:id => transaction.id) %>" data-toggle="modal"><i class="icon-cog"></i></a>
 
                 <%= link_to raw('<i class="icon-trash icon-white"></i>'), admin_transaction_path(:id => transaction.id),
                             :method => :delete, :confirm => 'Emin misiniz?', :class => "btn btn-danger" %>
