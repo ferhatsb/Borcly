@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     return false if request.path == admin_accounts_path
     return false if request.path == admin_update_account_path
     return false if request.path == user_omniauth_callback_path(:twitter)
-    return false if request.path == user_omniauth_callback_path(:twitter)
+    return false if request.path == user_omniauth_callback_path(:facebook)
     true
   end
 
