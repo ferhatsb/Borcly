@@ -1,11 +1,11 @@
 class Admin::TransactionsController < Admin::BaseController
 
   def index
-    @transactions = Transaction.not_paid_overdue
+    @transactions = Transaction.not_paid_overdue.order(:start_date).page params[:page]
   end
 
   def paid
-    @transactions = Transaction.paid
+    @transactions = Transaction.paid.order(:start_date).page params[:page]
   end
 
   def new
