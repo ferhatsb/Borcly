@@ -1,11 +1,11 @@
 class Admin::TransactionsController < Admin::BaseController
 
   def index
-    @transactions = Transaction.not_paid_overdue.order(:start_date).page params[:page]
+    @transactions = current_user.transactions.not_paid_overdue.order(:start_date).page params[:page]
   end
 
   def paid
-    @transactions = Transaction.paid.order(:start_date).page params[:page]
+    @transactions = current_user.transactions.paid.order(:start_date).page params[:page]
   end
 
   def new
@@ -43,7 +43,7 @@ class Admin::TransactionsController < Admin::BaseController
   end
 
   def update
-    @transaction = Transaction.find(params[:id])
+    @transaction = current_user.transactions.find(params[:id])
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
@@ -57,7 +57,7 @@ class Admin::TransactionsController < Admin::BaseController
   end
 
   def destroy
-    @transaction = Transaction.find(params[:id])
+    @transaction = current_user.transactions.find(params[:id])
     @transaction.destroy
 
     respond_to do |format|

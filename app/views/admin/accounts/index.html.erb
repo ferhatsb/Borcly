@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="span8">
+    <%= form_tag admin_update_account_path, :class => "form-horizontal" do %>
+    <fieldset>
+      <legend>Üyelik Bilgilerinizi Güncelleyin</legend>
+      <div class="control-group">
+        <label for="focusedInput" class="control-label">E-Posta:</label>
+
+        <div class="controls">
+          <%= text_field_tag 'email', current_user.email, :class => 'input-xlarge' %>
+        </div>
+      </div>
+
+      <% current_user.channels.each do |channel| %>
+          <div class="control-group">
+            <label class="control-label"><%= channel.provider %></label>
+          </div>
+      <% end %>
+
+      <%= link_to 'Facebook', user_omniauth_authorize_path(:facebook) %>
+      <%= link_to 'Twitter', user_omniauth_authorize_path(:twitter) %>
+
+    </fieldset>
+
+    <div class="modal-footer">
+      <%= submit_tag "Guncelleyin", :class => 'btn btn-primary' %>
+    </div>
+
+    <% end %>
+  </div>
+</div>

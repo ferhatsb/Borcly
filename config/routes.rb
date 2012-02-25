@@ -11,6 +11,9 @@ Borcly::Application.routes.draw do
         get 'paid'
       end
     end
+
+    match 'accounts' => 'accounts#index', :as => :accounts
+    match 'accounts/update' => 'accounts#update', :as => :update_account, :via => :post
     root :to =>  'transactions#index'
   end
 
