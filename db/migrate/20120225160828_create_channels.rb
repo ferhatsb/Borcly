@@ -6,6 +6,8 @@ class CreateChannels < ActiveRecord::Migration
       t.string :uid
       t.string :oauth_token
       t.string :oauth_token_secret
+      t.string :consumer_key
+      t.string :consumer_secret
 
       t.timestamps
     end

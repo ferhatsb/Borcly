@@ -9,6 +9,8 @@ Borcly::Application.routes.draw do
     resources :transactions do
       collection do
         get 'paid'
+        get 'overdue'
+        get 'broadcast'
       end
     end
 

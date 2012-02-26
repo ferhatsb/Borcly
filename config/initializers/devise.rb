@@ -226,6 +226,6 @@ Devise.setup do |config|
   # end
 
   config.omniauth :twitter, 'i29qNm1EibAuIKtn43MiSg', 'xQTc7mj9YnOy331sSyLqGWrVJRMttHJFuaHy5U6gM'
-  config.omniauth :facebook, '141662065955062', '5a5d8104efa066f9a96b4e4678ed3aa0'
+  config.omniauth :facebook, '141662065955062', '5a5d8104efa066f9a96b4e4678ed3aa0', {:scope => 'publish_stream,offline_access,email'}
 
 end

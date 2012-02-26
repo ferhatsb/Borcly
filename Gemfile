@@ -36,6 +36,11 @@ gem "omniauth", ">= 1.0.2"
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 
+gem "koala"
+gem 'twitter'
+
+gem "rufus-scheduler"
+
 gem 'validates_timeliness', '~> 3.0.2'
 
 gem 'kaminari'

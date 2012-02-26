@@ -1,5 +1,6 @@
 $(function () {
-    var modalElement = $('<div />', { class:'modal fade', id:'transacton-modal' })
+
+    /*var modalElement = $('<div />', { class:'modal fade', id:'transacton-modal' })
         .append($('<div />', { class:'modal-header' })
         .append($('<a/>', { class:'close', text:'x', 'data-dismiss':'modal' }))
         .append($('<h3/>', { text:'Yeni Borc Ekle' })))
@@ -21,6 +22,11 @@ $(function () {
                 });
             });
         });
+    });*/
+
+    $('.back-button').click(function(e) {
+        history.go(-1);
+        return false;
     });
 });
 

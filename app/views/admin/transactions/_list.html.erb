@@ -33,10 +33,12 @@
         <td><%= Transaction::STATUS[transaction.status.to_sym] %></td>
         <td>
           <div class="btn-group">
-            <a class="btn-modal btn" href="#transaction-modal" title="Duzenle " data-href="<%= edit_admin_transaction_path(:id => transaction.id) %>" data-toggle="modal"><i class="icon-cog"></i></a>
-
+            <%= link_to raw('<i class="icon-cog"></i>'), edit_admin_transaction_path(:id => transaction.id), :class => 'btn', :title => 'Duzenle' %>
             <%= link_to raw('<i class="icon-trash icon-white"></i>'), admin_transaction_path(:id => transaction.id),
-                        :method => :delete, :confirm => 'Emin misiniz?', :class => "btn btn-danger" %>
+                        :method => :delete, :confirm => 'Emin misiniz?', :class => "btn btn-danger"%>
+            <% if params[:action] == 'overdue' %>
+                <%= link_to raw('<i class="icon-share"></i>'), broadcast_admin_transactions_path(:id => transaction.id), :class => 'btn', :title => 'Yayinla' %>
+            <% end %>
           </div>
         </td>
       </tr>

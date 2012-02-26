@@ -2,14 +2,14 @@
   <h1>Yonetim</h1>
 </div>
 <div style="margin-bottom: 13px">
-  <a class="btn-modal btn btn-primary" title="Yeni Borc Ekle" href="#transaction-modal" data-href="<%= new_admin_transaction_path %>" data-toggle="modal">Yeni
-    Borc Ekle</a>
+  <%= link_to 'Yeni Borc Ekle', new_admin_transaction_path, :class => 'btn btn-primary' %>
   <br/>
 </div>
 
 <div style="padding: 8px 0;" class="well">
   <ul class="nav nav-list">
     <li <% if current_page?(:controller => 'admin/transactions') %>class="active" <% end %> ><%= link_to 'Alacaklarim', admin_transactions_path %></li>
+    <li <% if current_page?(:controller => 'admin/transactions', :action => 'overdue') %>class="active" <% end %> ><%= link_to 'Vadesi Gecenler',overdue_admin_transactions_path  %></li>
     <li <% if current_page?(:controller => 'admin/transactions', :action => 'paid') %>class="active" <% end %> ><%= link_to 'Odenmis Borclar', paid_admin_transactions_path %></li>
   </ul>
 </div>

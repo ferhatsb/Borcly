@@ -72,7 +72,9 @@ class User < ActiveRecord::Base
         :provider => omniauth['provider'],
         :uid => omniauth['uid'],
         :oauth_token => (omniauth['credentials']['token'] rescue nil),
-        :oauth_token_secret => (omniauth['credentials']['secret'] rescue nil)
+        :oauth_token_secret => (omniauth['credentials']['secret'] rescue nil),
+        :consumer_key => (omniauth['extra']['access_token'].consumer.key rescue nil),
+        :consumer_secret => (omniauth['extra']['access_token'].consumer.secret rescue nil)
     }
   end
 

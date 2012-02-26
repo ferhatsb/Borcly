@@ -1,24 +1,35 @@
 class Admin::TransactionsController < Admin::BaseController
 
   def index
-    @transactions = current_user.transactions.not_paid_overdue.order(:start_date).page params[:page]
+    @transactions = current_user.transactions.not_paid.order(:start_date).page params[:page]
   end
 
   def paid
     @transactions = current_user.transactions.paid.order(:start_date).page params[:page]
   end
 
+  def overdue
+    @transactions = current_user.transactions.overdue.order(:start_date).page params[:page]
+  end
+
   def new
     @transaction = Transaction.new
     respond_to do |format|
-      format.html { render :layout => false }
+      format.html
+    end
+  end
+
+  def show
+    @transaction = Transaction.find(params[:id])
+    respond_to do |format|
+      format.html
     end
   end
 
   def edit
     @transaction = Transaction.find(params[:id])
     respond_to do |format|
-      format.html { render :layout => false }
+      format.html
     end
   end
 
@@ -29,15 +40,9 @@ class Admin::TransactionsController < Admin::BaseController
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to request.referer, notice: 'Yeni Borc Kaydi olusturuldu' }
-        format.json { render json: @transaction, status: :created }
+        format.html { redirect_to admin_transactions_url, notice: 'Yeni Borc Kaydi olusturuldu' }
       else
-        format.js {
-          render :template => "admin/shared/form_errors",
-                 :locals => {
-                     :item => @transaction,
-                     :notice => 'Kayit Eklemede Hatalar Olustu'
-                 } }
+        format.html { render action: "new" }
       end
     end
   end
@@ -47,7 +52,7 @@ class Admin::TransactionsController < Admin::BaseController
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to request.referer, notice: 'Borc Kaydi guncellendi' }
+        format.html { redirect_to [:admin, @transaction], notice: 'Borc Kaydi guncellendi' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -61,10 +66,22 @@ class Admin::TransactionsController < Admin::BaseController
     @transaction.destroy
 
     respond_to do |format|
-      format.html { redirect_to request.referer }
+      format.html { redirect_to @transaction }
       format.json { head :no_content }
     end
   end
 
+
+  def broadcast
+    @transaction = current_user.transactions.find(params[:id])
+
+    respond_to do |format|
+      if @transaction.broadcast()
+        format.html { redirect_to overdue_admin_transactions_url, notice: 'Sosyal aglarinizda borclu duyurusu yapildi' }
+      else
+        format.html { redirect_to overdue_admin_transactions_url, error: 'Sosyal baglantilarinizda sorun yasandi' }
+      end
+    end
+  end
 
 end

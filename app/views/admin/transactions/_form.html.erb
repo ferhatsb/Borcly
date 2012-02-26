@@ -1,0 +1,76 @@
+<%= form_for([:admin, @transaction], :html => {:class => "form-horizontal ajax-form"}) do |f| %>
+    <fieldset>
+      <div class="control-group">
+        <label for="related_person_name" class="control-label">Borc Verilen Adi:</label>
+
+        <div class="controls">
+          <%= f.text_field :related_person_name, :class => 'input-xlarge' %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label for="related_person_email" class="control-label">Borc Verilen E-Posta:</label>
+
+        <div class="controls">
+          <%= f.text_field :related_person_email, :class => 'input-xlarge' %>
+        </div>
+      </div>
+
+      <% if params[:action] == 'edit' %>
+
+          <div class="control-group">
+            <label for="type" class="control-label">Borc Durumu:</label>
+
+            <div class="controls">
+              <%= f.select(:status, Transaction::STATUS.collect { |key, value| [value, key] }) %>
+            </div>
+          </div>
+
+      <% end %>
+      <div class="control-group">
+        <label for="amount" class="control-label">Borc Miktari:</label>
+
+        <div class="controls">
+          <%= f.text_field :amount, :class => 'input-xlarge' %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label for="amount" class="control-label">Borclu Twitter Hesabi:</label>
+
+        <div class="controls">
+          <%= f.text_field :related_person_twitter, :class => 'input-xlarge' %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label for="amount" class="control-label">Borclu Facebook Hesabi:</label>
+
+        <div class="controls">
+          <%= f.text_field :related_person_facebook, :class => 'input-xlarge' %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label for="start_date" class="control-label">Borc Verme Tarihi:</label>
+
+        <div class="controls">
+          <%= f.date_select :start_date, :class => 'input-xlarge' %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label for="end_date" class="control-label">Borc Vade Son Tarihi:</label>
+
+        <div class="controls">
+          <%= f.date_select :end_date, :class => 'input-xlarge' %>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <%= f.submit :class => 'btn btn-primary' %>
+        <%= link_to 'Geri', '#' , :class => 'btn back-button'%>
+      </div>
+
+    </fieldset>
+<% end %>
