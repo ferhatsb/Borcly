@@ -20,6 +20,8 @@ class TransactionsNotifications
             owner_tweet_account.update("Borcly borc bildirimi - #{transaction.related_person_name} vermis oldugunuz  #{transaction.amount} miktarindaki borcun vadesi #{transaction.end_date} tarhinde sona eriyor.")
           end
 
+          NotificationMailer.notification(transaction)
+
           transaction.notified = true
           transaction.save!
 

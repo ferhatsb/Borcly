@@ -19,13 +19,6 @@ class Admin::TransactionsController < Admin::BaseController
     end
   end
 
-  def show
-    @transaction = Transaction.find(params[:id])
-    respond_to do |format|
-      format.html
-    end
-  end
-
   def edit
     @transaction = Transaction.find(params[:id])
     respond_to do |format|
@@ -52,7 +45,12 @@ class Admin::TransactionsController < Admin::BaseController
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to [:admin, @transaction], notice: 'Borc Kaydi guncellendi' }
+        format.html {
+          status = ''
+          status = "#{@transaction.status}_" unless @transaction.status == 'not_paid'
+          redirect_to eval("#{status}admin_transactions_path"),
+                      notice: 'Borc Kaydi guncellendi'
+        }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -63,10 +61,12 @@ class Admin::TransactionsController < Admin::BaseController
 
   def destroy
     @transaction = current_user.transactions.find(params[:id])
+    status = ''
+    status = "#{@transaction.status}_" unless @transaction.status == 'not_paid'
     @transaction.destroy
 
     respond_to do |format|
-      format.html { redirect_to @transaction }
+      redirect_to eval("#{status}admin_transactions_path"), notice: 'Borc Silindi' and return
       format.json { head :no_content }
     end
   end
