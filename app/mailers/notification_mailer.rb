@@ -1,5 +1,5 @@
 class NotificationMailer < ActionMailer::Base
-  default :from => "notifications@example.com"
+  default :from => "borcly@gmail.com"
 
   def notification(transaction)
     @transaction  = transaction
