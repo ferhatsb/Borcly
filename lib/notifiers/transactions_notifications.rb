@@ -11,6 +11,9 @@ class TransactionsNotifications
         elsif transaction.end_date - Date.today <= 5 && !transaction.notified
 
           if user.channels.find_by_provider('twitter')
+
+            puts "sending twit  to user for transaction #{transaction.related_person_email}"
+
             #credit owner
             owner_tweet_account = Twitter::Client.new(:oauth_token => user.channels.find_by_provider('twitter').oauth_token,
                                                 :oauth_token_secret => user.channels.find_by_provider('twitter').oauth_token_secret,
@@ -20,6 +23,7 @@ class TransactionsNotifications
             owner_tweet_account.update("Borcly borc bildirimi - #{transaction.related_person_name} vermis oldugunuz  #{transaction.amount} miktarindaki borcun vadesi #{transaction.end_date} tarhinde sona eriyor.")
           end
 
+          puts "sending email to user for transaction #{transaction.related_person_email}"
           NotificationMailer.notification(transaction)
 
           transaction.notified = true
