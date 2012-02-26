@@ -7,6 +7,11 @@ class Transaction < ActiveRecord::Base
   attr_accessible :status, :related_person_name, :amount, :end_date, :start_date, :related_person_email, :related_person_twitter, :related_person_facebook
 
 
+  def self.user_credited_before_and_not_paid?(email)
+    Transaction.not_paid_overdue.find_by_related_person_email(email)
+  end
+
+
   def broadcast
     message_text = "#{related_person_name} vermis oldugum  #{amount} miktarindaki borcu odemedi."
 
@@ -28,7 +33,6 @@ class Transaction < ActiveRecord::Base
     rescue Exception => e
       false
     end
-
 
   end
 

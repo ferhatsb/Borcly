@@ -84,4 +84,11 @@ class Admin::TransactionsController < Admin::BaseController
     end
   end
 
+  #check user's debit history
+  def check
+    email = params[:email]
+    result = !Transaction.user_credited_before_and_not_paid?(email).nil?
+    render :text =>  result.to_s
+  end
+
 end

@@ -11,6 +11,7 @@ Borcly::Application.routes.draw do
         get 'paid'
         get 'overdue'
         get 'broadcast'
+        get 'check'
       end
     end
 

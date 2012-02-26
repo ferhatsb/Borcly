@@ -1,4 +1,4 @@
-<%= form_for([:admin, @transaction], :html => {:class => "form-horizontal ajax-form"}) do |f| %>
+<%= form_for([:admin, @transaction], :html => {:class => "form-horizontal #{'check-paid' if params[:action] == 'new'}" }) do |f| %>
     <fieldset>
       <div class="control-group">
         <label for="related_person_name" class="control-label">Borc Verilen Adi:</label>
