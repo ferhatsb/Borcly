@@ -1,5 +1,8 @@
 class Transaction < ActiveRecord::Base
 
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
   STATUS = {:paid => 'Odendi', :not_paid => 'Odenmedi', :overdue => 'Vadesi Gecmis'}
 
   belongs_to :user

@@ -42,3 +42,5 @@ gem 'twitter'
 gem 'validates_timeliness', '~> 3.0.2'
 
 gem 'kaminari'
+
+gem 'tire'

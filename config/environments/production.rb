@@ -83,4 +83,8 @@ Borcly::Application.configure do
       :host => "herokuapp.com"
   }
 
+  Tire.configure do
+    url ENV['SEARCHBOX_URL']
+  end
+
 end
